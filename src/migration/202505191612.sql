@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS room (
 CREATE TABLE IF NOT EXISTS bookings (
   employee_id INTEGER NOT NULL,
   room_id INTEGER NOT NULL,
-  dia_hora_reserva timestamp NOT NULL,
-  PRIMARY KEY (employee_id, room_id),
+  dia_hora_reserva TIMESTAMP NOT NULL,
+  PRIMARY KEY (employee_id, room_id, dia_hora_reserva),
   FOREIGN KEY (employee_id) REFERENCES employee(id),
   FOREIGN KEY (room_id) REFERENCES room(id)
 );
