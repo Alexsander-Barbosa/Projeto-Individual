@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "migration": "node src/migration/runSQLscript.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/Alexsander-Barbosa/Projeto-Individual#readme",
   "dependencies": {
     "dotenv": "^16.5.0",
+    "express": "^5.1.0",
     "pg": "^8.16.0"
   }
 }
