@@ -1,0 +1,25 @@
+{
+  "name": "projeto-individual",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexsander-Barbosa/Projeto-Individual.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexsander-Barbosa/Projeto-Individual/issues"
+  },
+  "homepage": "https://github.com/Alexsander-Barbosa/Projeto-Individual#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "pg": "^8.16.0"
+  }
+}
