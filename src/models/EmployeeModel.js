@@ -1,4 +1,3 @@
-// src/models/EmployeeModel.js
 const pool = require('../config/db');
 
 const EmployeeModel = {

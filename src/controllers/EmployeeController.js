@@ -1,4 +1,3 @@
-// src/controllers/EmployeeController.js
 const EmployeeModel = require('../models/EmployeeModel');
 
 exports.criarEmployee = async (req, res) => {
