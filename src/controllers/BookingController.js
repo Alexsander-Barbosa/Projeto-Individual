@@ -1,9 +1,9 @@
 const BookingModel = require('../models/BookingModel');
 
 exports.criarBooking = async (req, res) => {
-  const { employee_id, room_id, dia_hora_reserva } = req.body;
+  const { employee_id, room_id, dia_hora_reserva, num_pessoas } = req.body;
   try {
-    const booking = await BookingModel.criarBooking(employee_id, room_id, dia_hora_reserva);
+    const booking = await BookingModel.criarBooking(employee_id, room_id, dia_hora_reserva, num_pessoas);
     res.status(201).json(booking);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -21,9 +21,9 @@ exports.listarBookings = async (req, res) => {
 
 exports.editarBooking = async (req, res) => {
   const { id } = req.params;
-  const { employee_id, room_id, dia_hora_reserva } = req.body;
+  const { employee_id, room_id, dia_hora_reserva, num_pessoas } = req.body;
   try {
-    const booking = await BookingModel.editarBooking(id, employee_id, room_id, dia_hora_reserva);
+    const booking = await BookingModel.editarBooking(id, employee_id, room_id, dia_hora_reserva, num_pessoas);
     if (!booking) {
       return res.status(404).json({ message: 'Reserva não encontrada' });
     }

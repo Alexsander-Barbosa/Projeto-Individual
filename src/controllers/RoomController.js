@@ -1,9 +1,9 @@
 const RoomModel = require('../models/RoomModel');
 
 exports.criarRoom = async (req, res) => {
-  const { nome, capacidade } = req.body;
+  const { numero_sala, capacidade_maxima } = req.body;
   try {
-    const room = await RoomModel.criarRoom(nome, capacidade);
+    const room = await RoomModel.criarRoom(numero_sala, capacidade_maxima);
     res.status(201).json(room);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -21,9 +21,9 @@ exports.listarRooms = async (req, res) => {
 
 exports.editarRoom = async (req, res) => {
   const { id } = req.params;
-  const { nome, capacidade } = req.body;
+  const { numero_sala, capacidade_maxima } = req.body;
   try {
-    const room = await RoomModel.editarRoom(id, nome, capacidade);
+    const room = await RoomModel.editarRoom(id, numero_sala, capacidade_maxima);
     if (!room) {
       return res.status(404).json({ message: 'Sala não encontrada' });
     }
