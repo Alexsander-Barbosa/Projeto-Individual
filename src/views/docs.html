@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Documentação da API</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 800px;
+      margin: 2rem auto;
+      line-height: 1.6;
+    }
+
+    code {
+      background: #f4f4f4;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>API de Gerenciamento de Salas, Funcionários e Reservas</h1>
+
+  <p>Esta aplicação expõe três conjuntos de endpoints REST em <code>/api/employees</code>, <code>/api/rooms</code> e <code>/api/bookings</code>. Todos aceitam e devolvem JSON.</p>
+
+  <h2>1. Employees (Funcionários)</h2>
+  <ul>
+    <li><strong>GET /api/employees</strong> – Lista todos os funcionários.</li>
+    <li><strong>POST /api/employees</strong> – Cria um funcionário.<br>
+      Exemplo: <code>{"nome":"Ana","departamento":"RH"}</code></li>
+    <li><strong>PUT /api/employees/:id</strong> – Atualiza um funcionário.</li>
+    <li><strong>DELETE /api/employees/:id</strong> – Remove um funcionário.</li>
+  </ul>
+
+  <h2>2. Rooms (Salas)</h2>
+  <ul>
+    <li><strong>GET /api/rooms</strong> – Lista todas as salas.</li>
+    <li><strong>POST /api/rooms</strong> – Cria uma sala.<br>
+      Exemplo: <code>{"numero_sala":101,"capacidade_maxima":20}</code></li>
+    <li><strong>PUT /api/rooms/:id</strong> – Atualiza uma sala.</li>
+    <li><strong>DELETE /api/rooms/:id</strong> – Remove uma sala.</li>
+  </ul>
+
+  <h2>3. Bookings (Reservas)</h2>
+  <ul>
+    <li><strong>GET /api/bookings</strong> – Lista todas as reservas.</li>
+    <li><strong>POST /api/bookings</strong> – Cria uma reserva.<br>
+      Exemplo: <code>{"employee_id":1,"room_id":2,"dia_hora_reserva":"2025-05-23T14:00:00","num_pessoas":5}</code></li>
+    <li><strong>PUT /api/bookings/:id</strong> – Atualiza uma reserva.</li>
+    <li><strong>DELETE /api/bookings/:id</strong> – Remove uma reserva.</li>
+  </ul>
+
+  <h2>Exemplos de uso via <em>curl</em></h2>
+  <pre>
+curl -X POST http://localhost:3000/api/employees \
+     -H "Content-Type: application/json" \
+     -d '{"nome":"Ana","departamento":"RH"}'
+
+curl -X POST http://localhost:3000/api/rooms \
+     -H "Content-Type: application/json" \
+     -d '{"numero_sala":101,"capacidade_maxima":20}'
+
+curl -X POST http://localhost:3000/api/bookings \
+     -H "Content-Type: application/json" \
+     -d '{"employee_id":1,"room_id":2,"dia_hora_reserva":"2025-05-23T14:00:00","num_pessoas":5}'
+
+curl http://localhost:3000/api/employees
+curl http://localhost:3000/api/rooms
+curl http://localhost:3000/api/bookings
+  </pre>
+</body>
+
+</html>
