@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Funcionários</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Lista de Funcionários</h1>
+
+  <a href="/employees/form">➕ Novo Funcionário</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Departamento</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (employees.length > 0) { %>
+        <% employees.forEach(emp => { %>
+          <tr>
+            <td><%= emp.id %></td>
+            <td><%= emp.nome %></td>
+            <td><%= emp.departamento %></td>
+            <td>
+              <a href="/employees/form/<%= emp.id %>">✏️ Editar</a>
+              |
+              <a href="#" onclick="deletar('<%= emp.id %>')">🗑️ Excluir</a>
+            </td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="4">Nenhum funcionário cadastrado.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <script>
+    function deletar(id) {
+      if (confirm('Deseja realmente excluir este funcionário?')) {
+        fetch('/api/employees/' + id, {
+          method: 'DELETE'
+        })
+        .then(res => {
+          if (res.ok) {
+            location.reload();
+          } else {
+            alert('Erro ao excluir');
+          }
+        });
+      }
+    }
+  </script>
+  <script src="/js/employees.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservas</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Lista de Reservas</h1>
+
+  <a href="/bookings/form">➕ Nova Reserva</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Funcionário (ID)</th>
+        <th>Sala (ID)</th>
+        <th>Dia e Hora da Reserva</th>
+        <th>Número de Pessoas</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (bookings && bookings.length > 0) { %>
+        <% bookings.forEach(booking => { %>
+          <tr>
+            <td><%= booking.id %></td>
+            <td><%= booking.employee_id %></td>
+            <td><%= booking.room_id %></td>
+            <td><%= new Date(booking.dia_hora_reserva).toLocaleString('pt-BR') %></td>
+            <td><%= booking.num_pessoas %></td>
+            <td>
+              <a href="/bookings/form/<%= booking.id %>">✏️ Editar</a>
+              |
+              <a href="#" onclick="deletarReserva('<%= booking.id %>')">🗑️ Excluir</a>
+            </td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="6">Nenhuma reserva cadastrada.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <script src="/js/bookings.js"></script> </body>
+</html>

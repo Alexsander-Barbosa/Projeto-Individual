@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title><%= employee ? 'Editar Funcionário' : 'Novo Funcionário' %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1><%= employee ? 'Editar Funcionário' : 'Cadastrar Funcionário' %></h1>
+  <form id="employeeForm"> <input type="hidden" id="id" value="<%= employee ? employee.id : '' %>"> <label for="nome">Nome:</label>
+    <input type="text" id="nome" value="<%= employee ? employee.nome : '' %>" required> <br>
+    <label for="departamento">Departamento:</label>
+    <input type="text" id="departamento" value="<%= employee ? employee.departamento : '' %>" required> <br>
+    <button type="submit">Salvar</button>
+  </form>
+  <a href="/employees">Voltar</a>
+  <script src="/js/employeesForm.js"></script> </body>
+</html>

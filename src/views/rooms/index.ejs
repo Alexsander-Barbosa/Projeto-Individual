@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Salas</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Lista de Salas</h1>
+
+  <a href="/rooms/form">➕ Nova Sala</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Número da Sala</th>
+        <th>Capacidade Máxima</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (rooms && rooms.length > 0) { %>
+        <% rooms.forEach(room => { %>
+          <tr>
+            <td><%= room.id %></td>
+            <td><%= room.numero_sala %></td>
+            <td><%= room.capacidade_maxima %></td>
+            <td>
+              <a href="/rooms/form/<%= room.id %>">✏️ Editar</a>
+              |
+              <a href="#" onclick="deletarSala('<%= room.id %>')">🗑️ Excluir</a>
+            </td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="4">Nenhuma sala cadastrada.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <script src="/js/rooms.js"></script> </body>
+</html>

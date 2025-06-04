@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title><%= booking ? 'Editar Reserva' : 'Nova Reserva' %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1><%= booking ? 'Editar Reserva' : 'Cadastrar Reserva' %></h1>
+  <form id="bookingForm">
+    <input type="hidden" id="id" value="<%= booking ? booking.id : '' %>">
+    
+    <label for="employee_id">Funcionário:</label>
+    <select id="employee_id" required>
+      <option value="">Selecione um funcionário</option>
+      <% employees.forEach(emp => { %>
+        <option value="<%= emp.id %>" <%= booking && booking.employee_id === emp.id ? 'selected' : '' %>>
+          <%= emp.nome %>
+        </option>
+      <% }) %>
+    </select>
+    <br>
+
+    <label for="room_id">Sala:</label>
+    <select id="room_id" required>
+      <option value="">Selecione uma sala</option>
+      <% rooms.forEach(room => { %>
+        <option value="<%= room.id %>" <%= booking && booking.room_id === room.id ? 'selected' : '' %>>
+          <%= room.numero_sala %> (Cap: <%= room.capacidade_maxima %>)
+        </option>
+      <% }) %>
+    </select>
+    <br>
+
+    <label for="dia_hora_reserva">Dia e Hora de Início:</label>
+    <input type="datetime-local" id="dia_hora_reserva" value="<%= booking ? new Date(booking.dia_hora_reserva).toISOString().slice(0, 16) : '' %>" required>
+    <br>
+
+    <label for="dia_hora_fim_reserva">Dia e Hora de Fim:</label>
+    <input type="datetime-local" id="dia_hora_fim_reserva" value="<%= booking && booking.dia_hora_fim_reserva ? new Date(booking.dia_hora_fim_reserva).toISOString().slice(0, 16) : '' %>" required>
+    <br>
+
+    <label for="num_pessoas">Número de Pessoas:</label>
+    <input type="number" id="num_pessoas" value="<%= booking ? booking.num_pessoas : '' %>" required min="1">
+    <br>
+
+    <button type="submit">Salvar</button>
+  </form>
+  <a href="/bookings">Voltar</a>
+
+  <script src="/js/bookingsForm.js"></script>
+</body>
+</html>

@@ -1,26 +1,24 @@
 const express = require('express');
 const router = express.Router();
 
-const EmployeeController = require('../controllers/EmployeeController');
-const RoomController = require('../controllers/RoomController');
-const BookingController = require('../controllers/BookingController');
+// Importa rotas da API
+const employeeApiRoutes = require('./api/employeeRoutes');
+const roomApiRoutes = require('./api/roomRoutes');
+const bookingApiRoutes = require('./api/bookingRoutes');
 
-router.post('/employees', EmployeeController.criar);
-router.get('/employees', EmployeeController.listar);
-router.get('/employees/:id', EmployeeController.buscarPorId);
-router.put('/employees/:id', EmployeeController.atualizar);
-router.delete('/employees/:id', EmployeeController.excluir);
+// Importa rotas das páginas (views)
+const employeePageRoutes = require('./pages/employeePageRoutes');
+const roomPageRoutes = require('./pages/roomPageRoutes');
+const bookingPageRoutes = require('./pages/bookingPageRoutes');
 
-router.post('/rooms', RoomController.criar);
-router.get('/rooms', RoomController.listar);
-router.get('/rooms/:id', RoomController.buscarPorId);
-router.put('/rooms/:id', RoomController.atualizar);
-router.delete('/rooms/:id', RoomController.excluir);
+// Usa as rotas API com prefixo /api
+router.use('/api/employees', employeeApiRoutes);
+router.use('/api/rooms', roomApiRoutes);
+router.use('/api/bookings', bookingApiRoutes);
 
-router.post('/bookings', BookingController.criar);
-router.get('/bookings', BookingController.listar);
-router.get('/bookings/:id', BookingController.buscarPorId);
-router.put('/bookings/:id', BookingController.atualizar);
-router.delete('/bookings/:id', BookingController.excluir);
+// Usa as rotas das páginas sem prefixo ou com prefixo para páginas
+router.use('/employees', employeePageRoutes);
+router.use('/rooms', roomPageRoutes);
+router.use('/bookings', bookingPageRoutes);
 
 module.exports = router;

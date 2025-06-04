@@ -10,7 +10,7 @@ const EmployeeController = {
     }
   },
 
-  listar: async (req, res) => {
+  listar: async (req, res) => { // Removido renderView como parâmetro aqui, agora será um método separado para views
     try {
       const employees = await EmployeeService.listar();
       res.status(200).json(employees);
@@ -19,7 +19,7 @@ const EmployeeController = {
     }
   },
 
-  buscarPorId: async (req, res) => {
+  buscarPorId: async (req, res) => { // Removido renderView como parâmetro aqui
     try {
       const employee = await EmployeeService.buscarPorId(req.params.id);
       if (!employee) return res.status(404).json({ message: 'Funcionário não encontrado' });
@@ -46,6 +46,30 @@ const EmployeeController = {
       res.status(200).json({ message: 'Funcionário excluído com sucesso' });
     } catch (err) {
       res.status(500).json({ error: err.message });
+    }
+  },
+
+  // === VIEWS (Renderização EJS) ===
+
+  listarEmployeesView: async (req, res) => {
+    try {
+      const employees = await EmployeeService.listar();
+      res.render('employees/index', { employees });
+    } catch (err) {
+      res.status(500).send('Erro ao carregar lista de funcionários');
+    }
+  },
+
+  formEmployeeView: async (req, res) => {
+    try {
+      let employee = null;
+      if (req.params.id) {
+        employee = await EmployeeService.buscarPorId(req.params.id);
+        if (!employee) return res.status(404).send('Funcionário não encontrado');
+      }
+      res.render('employees/form', { employee });
+    } catch (err) {
+      res.status(500).send('Erro ao carregar formulário do funcionário');
     }
   }
 };
