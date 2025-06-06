@@ -14,8 +14,7 @@
         <th>ID</th>
         <th>Número da Sala</th>
         <th>Capacidade Máxima</th>
-        <th>Ações</th>
-      </tr>
+        </tr>
     </thead>
     <tbody>
       <% if (rooms && rooms.length > 0) { %>
@@ -24,17 +23,15 @@
             <td><%= room.id %></td>
             <td><%= room.numero_sala %></td>
             <td><%= room.capacidade_maxima %></td>
-            <td>
-              </td>
-          </tr>
+            </tr>
         <% }) %>
       <% } else { %>
         <tr>
-          <td colspan="4">Nenhuma sala cadastrada.</td>
+          <td colspan="3">Nenhuma sala cadastrada.</td>
         </tr>
       <% } %>
     </tbody>
   </table>
 
-  </body>
+</body>
 </html>

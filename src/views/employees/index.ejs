@@ -14,8 +14,7 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Departamento</th>
-        <th>Ações</th>
-      </tr>
+        </tr>
     </thead>
     <tbody>
       <% if (employees.length > 0) { %>
@@ -24,17 +23,15 @@
             <td><%= emp.id %></td>
             <td><%= emp.nome %></td>
             <td><%= emp.departamento %></td>
-            <td>
-              </td>
-          </tr>
+            </tr>
         <% }) %>
       <% } else { %>
         <tr>
-          <td colspan="4">Nenhum funcionário cadastrado.</td>
+          <td colspan="3">Nenhum funcionário cadastrado.</td>
         </tr>
       <% } %>
     </tbody>
   </table>
 
-  </body>
+</body>
 </html>

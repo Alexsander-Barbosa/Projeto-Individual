@@ -14,10 +14,10 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>Funcionário (ID)</th>
-        <th>Sala (ID)</th>
-        <th>Dia e Hora da Reserva</th>
-        <th>Número de Pessoas</th>
+        <th>Funcionário</th>
+        <th>Sala</th>
+        <th>Início da Reserva</th>
+        <th>Fim da Reserva</th> <th>Pessoas</th>
         <th>Ações</th>
       </tr>
     </thead>
@@ -26,10 +26,10 @@
         <% bookings.forEach(booking => { %>
           <tr>
             <td><%= booking.id %></td>
-            <td><%= booking.employee_id %></td>
-            <td><%= booking.room_id %></td>
+            <td><%= booking.employee_nome %></td>
+            <td><%= booking.numero_sala %></td>
             <td><%= new Date(booking.dia_hora_reserva).toLocaleString('pt-BR') %></td>
-            <td><%= booking.num_pessoas %></td>
+            <td><%= new Date(booking.dia_hora_fim_reserva).toLocaleString('pt-BR') %></td> <td><%= booking.num_pessoas %></td>
             <td>
               <a href="/bookings/form/<%= booking.id %>">✏️ Editar</a>
               |
@@ -39,11 +39,12 @@
         <% }) %>
       <% } else { %>
         <tr>
-          <td colspan="6">Nenhuma reserva cadastrada.</td>
+          <td colspan="7">Nenhuma reserva cadastrada.</td>
         </tr>
       <% } %>
     </tbody>
   </table>
 
-  <script src="/js/bookings.js"></script> </body>
+  <script src="/js/bookings.js"></script>
+</body>
 </html>
