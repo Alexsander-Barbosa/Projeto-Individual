@@ -8,8 +8,6 @@
 <body>
   <h1>Lista de Salas</h1>
 
-  <a href="/rooms/form">➕ Nova Sala</a>
-
   <table>
     <thead>
       <tr>
@@ -27,10 +25,7 @@
             <td><%= room.numero_sala %></td>
             <td><%= room.capacidade_maxima %></td>
             <td>
-              <a href="/rooms/form/<%= room.id %>">✏️ Editar</a>
-              |
-              <a href="#" onclick="deletarSala('<%= room.id %>')">🗑️ Excluir</a>
-            </td>
+              </td>
           </tr>
         <% }) %>
       <% } else { %>
@@ -41,5 +36,5 @@
     </tbody>
   </table>
 
-  <script src="/js/rooms.js"></script> </body>
+  </body>
 </html>

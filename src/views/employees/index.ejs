@@ -8,8 +8,6 @@
 <body>
   <h1>Lista de Funcionários</h1>
 
-  <a href="/employees/form">➕ Novo Funcionário</a>
-
   <table>
     <thead>
       <tr>
@@ -27,10 +25,7 @@
             <td><%= emp.nome %></td>
             <td><%= emp.departamento %></td>
             <td>
-              <a href="/employees/form/<%= emp.id %>">✏️ Editar</a>
-              |
-              <a href="#" onclick="deletar('<%= emp.id %>')">🗑️ Excluir</a>
-            </td>
+              </td>
           </tr>
         <% }) %>
       <% } else { %>
@@ -41,22 +36,5 @@
     </tbody>
   </table>
 
-  <script>
-    function deletar(id) {
-      if (confirm('Deseja realmente excluir este funcionário?')) {
-        fetch('/api/employees/' + id, {
-          method: 'DELETE'
-        })
-        .then(res => {
-          if (res.ok) {
-            location.reload();
-          } else {
-            alert('Erro ao excluir');
-          }
-        });
-      }
-    }
-  </script>
-  <script src="/js/employees.js"></script>
-</body>
+  </body>
 </html>
