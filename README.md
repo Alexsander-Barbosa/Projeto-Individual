@@ -1,151 +1,82 @@
 # Sistema de Reserva de Salas
 
-Este projeto tem como objetivo oferecer uma solução eficiente para a reserva de salas de reunião por colaboradores de uma empresa. A aplicação foi desenvolvida para otimizar a gestão de espaços compartilhados, permitindo aos usuários visualizar a disponibilidade em tempo real, agendar reservas de forma prática e evitar conflitos de uso. Com isso, busca-se resolver problemas comuns relacionados à previsão e ocupação de salas, promovendo um ambiente de trabalho mais organizado e produtivo.
+Este projeto oferece uma solução eficiente para a **reserva de salas de reunião** por colaboradores de uma empresa. A aplicação foi desenvolvida para otimizar a gestão de espaços compartilhados, permitindo aos usuários visualizar a disponibilidade, agendar reservas de forma prática e evitar conflitos de uso. O sistema busca resolver problemas comuns relacionados à previsão e ocupação de salas, promovendo um ambiente de trabalho mais organizado e produtivo, agora com uma **interface visual interativa** acessível via navegador.
 
-## Requisitos
+---
 
-- Node.js (versão 24.0.1)
-- PostgreSQL (versão 17.5)
+## 🚀 Requisitos
 
-## Instalação
+Certifique-se de ter instalado:
 
-1. **Clonar o repositório:**
+* **Node.js**: Versão 20 ou superior.
+* **PostgreSQL**: Versão 12 ou superior.
 
-```bash
-git clone https://github.com/Alexsander-Barbosa/Projeto-Individual.git
-```
+---
 
-2. **Instalar as dependências:**
+## 🛠️ Instalação e Configuração
 
-```bash
-npm install
-```
+1.  **Clonar o repositório:**
 
-3. **Configurar o arquivo `.env`:**
+    ```bash
+    git clone [https://github.com/Alexsander-Barbosa/Projeto-Individual.git](https://github.com/Alexsander-Barbosa/Projeto-Individual.git)
+    cd Projeto-Individual
+    ```
 
-Renomeie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente necessárias, como as configurações do banco de dados PostgreSQL.
+2.  **Entrar na pasta raiz do projeto (agora `src/`):**
 
-### Exemplo de `.env`
+    Todos os comandos `npm` e `node` devem ser executados de dentro da pasta `src/`.
 
-```env
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=nome_do_banco
-DB_USER=usuario
-DB_PASSWORD=senha
-PORT=3000
-```
+    ```bash
+    cd src/
+    ```
 
+3.  **Instalar as dependências:**
 
-## Configuração do Banco de Dados
+    ```bash
+    npm install
+    ```
 
-1. **Criar banco de dados:**
+4.  **Configurar o arquivo `.env`:**
 
-Crie um banco de dados PostgreSQL com o nome especificado no seu arquivo `.env`.
+    Na **raiz do seu projeto** (`Projeto-Individual/`), renomeie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente para a conexão com seu banco de dados PostgreSQL.
 
-2. **Executar o script SQL de inicialização:**
+    ### Exemplo de `.env`
 
-```bash
-npm run migration
-```
+    ```env
+    DB_HOST=localhost
+    DB_PORT=5432
+    DB_NAME=nome_do_seu_banco
+    DB_USER=seu_usuario_do_banco
+    DB_PASSWORD=sua_senha_do_banco
+    PORT=3000
+    ```
 
-Esse comando executa o script SQL que cria as tabelas `employee`, `room` e `bookings`, além de inserir dados fictícios para testes.
+---
 
-## Funcionalidades
+## 🗄️ Configuração do Banco de Dados
 
-* **Padrão MVC:** Estrutura organizada em Model, View e Controller.
-* **PostgreSQL:** Banco de dados relacional utilizado para persistência dos dados.
-* **UUID:** Utilização de UUID como chave primária nas tabelas `employee`, `room` e `bookings`.
-* **Scripts com `nodemon`:** Utilização do `nodemon` para reiniciar automaticamente o servidor após alterações no código.
-* **Testes:** Inclui estrutura básica para testes automatizados.
+1.  **Criar o banco de dados:**
 
-## Arquitetura MVC
+    Crie um banco de dados PostgreSQL com o **nome especificado no seu arquivo `.env`**.
 
-Este projeto segue o padrão MVC:
+2.  **Executar o script SQL de inicialização (migrações):**
 
-- **Model**: Interage diretamente com o banco de dados PostgreSQL.
-- **View**: Neste projeto, representada pelas requisições feitas por clientes HTTP (como Postman).
-- **Controller**: Contém a lógica da aplicação que responde às requisições da View e manipula os Models.
+    Este comando cria as tabelas `employee`, `room` e `bookings` com suas colunas atualizadas, incluindo o horário de fim da reserva.
 
-![Diagrama da Arquitetura MVC](https://github.com/usuario/repositorio/imagens/diagrama-mvc.png)
+    ```bash
+    node migration/runSQLscripts.js
+    ```
+    *(Execute este comando de dentro da pasta `src/`)*
 
-## Testando a API
+---
 
-Você pode usar o Postman ou Insomnia para testar os seguintes endpoints:
+## ▶️ Como Rodar o Projeto
 
-### Funcionários (`/api/employees`)
-- `GET /api/employees`: Lista todos os funcionários.
-- `POST /api/employees`: Cria um novo funcionário.
-- `PUT /api/employees/:id`: Atualiza um funcionário.
-- `DELETE /api/employees/:id`: Remove um funcionário.
-
-Exemplo de criação de funcionário (`POST`)
-```json
-{
-  "nome": "Maria Silva",
-  "departamento": "Recursos Humanos"
-}
-```
-Resposta de sucesso (201):
-```json
-{
-  "id": 1,
-  "nome": "Maria Silva",
-  "departamento": "Recursos Humanos"
-}
-```
-
-### Salas (`/api/rooms`)
-- `GET /api/rooms`: Lista todas as salas.
-- `POST /api/rooms`: Cria uma nova sala.
-- `PUT /api/rooms/:id`: Atualiza uma sala.
-- `DELETE /api/rooms/:id`: Remove uma sala.
-
-
-### Reservas (`/api/bookings`)
-- `GET /api/bookings`: Lista todas as reservas.
-- `POST /api/bookings`: Cria uma nova reserva.
-- `PUT /api/bookings/:id`: Atualiza uma reserva.
-- `DELETE /api/bookings/:id`: Remove uma reserva.
-
-## Scripts Disponíveis
-
-* `npm start`: Inicia o servidor Node.js.
-* `npm run dev`: Inicia o servidor com `nodemon`, reiniciando automaticamente após alterações no código.
-* `npm run test`: Executa os testes automatizados.
-* `npm run test:coverage`: Executa os testes e gera um relatório de cobertura de código.
-* `npm run migration`: Executa a criação das tabelas e popula o banco com dados fictícios.
-
-## Estrutura de Diretórios
-
-* **`config/`**: Configurações do banco de dados e outras configurações do projeto.
-* **`controllers/`**: Controladores da aplicação (lógica de negócio).
-* **`models/`**: Modelos da aplicação (definições de dados e interações com o banco de dados).
-* **`routes/`**: Rotas da aplicação.
-* **`tests/`**: Testes automatizados.
-
-## Como Rodar o Projeto
-
-1. Instale as dependências:
+Após a instalação e configuração do banco de dados (passos acima), inicie o servidor:
 
 ```bash
-npm install
-```
-
-2. Configure as variáveis de ambiente no arquivo `.env`
-
-3. Crie o banco de dados no PostgreSQL com o nome definido no `.env`
-
-4. Execute o script de migração:
-
-```bash
-npm run migration
-```
-
-5. Inicie o servidor:
-
-```bash
-npm run dev
-```
-
-A API estará disponível em: `http://localhost:3000/api`
+npm start
+# ou, se você tiver nodemon configurado no package.json
+# npm run dev
+# ou, diretamente (de dentro da pasta src/):
+# node server.js

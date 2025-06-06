@@ -29,9 +29,29 @@ CREATE TABLE IF NOT EXISTS bookings (
   employee_id INTEGER NOT NULL,
   room_id INTEGER NOT NULL,
   dia_hora_reserva TIMESTAMP NOT NULL,
+  dia_hora_fim_reserva TIMESTAMP NOT NULL,
   num_pessoas INTEGER NOT NULL,
   FOREIGN KEY (employee_id) REFERENCES employee(id),
   FOREIGN KEY (room_id) REFERENCES room(id),
-  UNIQUE (employee_id, room_id, dia_hora_reserva)
+  UNIQUE (employee_id, room_id, dia_hora_reserva, dia_hora_fim_reserva)
 );
 ```
+## Prints das Views (Interface do Usuário)
+
+Esta seção mostra as principais telas da aplicação, demonstrando a interação com o sistema e a exibição dos dados.
+
+### 1. Página de Listagem de Reservas (`/bookings`)
+
+  <img src="../assets/listagem-reservas.png" alt="Listagem de Reservas">
+
+### 2. Formulário de Reserva (Criação/Edição - /`bookings/form` ou `/bookings/form/:id`)
+
+  <img src="../assets/criacao-reservas.png" alt="Criação de Reservas">
+
+### 3. Página de Listagem de Funcionários (`/employees`)
+
+  <img src="../assets/listagem-funcionarios.png" alt="Listagem de Funcionários">
+
+### 4. Página de Listagem de Salas (`/rooms`)
+
+  <img src="../assets/listagem-salas.png" alt="Listagem de Salas">
