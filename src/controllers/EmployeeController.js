@@ -10,7 +10,7 @@ const EmployeeController = {
     }
   },
 
-  listar: async (req, res) => { // Removido renderView como parâmetro aqui, agora será um método separado para views
+  listar: async (req, res) => {
     try {
       const employees = await EmployeeService.listar();
       res.status(200).json(employees);
@@ -19,7 +19,7 @@ const EmployeeController = {
     }
   },
 
-  buscarPorId: async (req, res) => { // Removido renderView como parâmetro aqui
+  buscarPorId: async (req, res) => {
     try {
       const employee = await EmployeeService.buscarPorId(req.params.id);
       if (!employee) return res.status(404).json({ message: 'Funcionário não encontrado' });
@@ -48,8 +48,6 @@ const EmployeeController = {
       res.status(500).json({ error: err.message });
     }
   },
-
-  // === VIEWS (Renderização EJS) ===
 
   listarEmployeesView: async (req, res) => {
     try {

@@ -1,7 +1,6 @@
 const RoomService = require('../services/RoomService');
 
 const RoomController = {
-  // === API REST ===
   criar: async (req, res) => {
     try {
       const room = await RoomService.criar(req.body);
@@ -50,9 +49,6 @@ const RoomController = {
     }
   },
 
-  // === VIEWS (Renderização EJS) ===
-
-  // Renderiza lista de salas (GET /rooms)
   listarRoomsView: async (req, res) => {
     try {
       const rooms = await RoomService.listar();
@@ -62,7 +58,6 @@ const RoomController = {
     }
   },
 
-  // Renderiza formulário para criar ou editar sala (GET /rooms/form ou /rooms/form/:id)
   formRoomView: async (req, res) => {
     try {
       if (req.params.id) {
@@ -70,7 +65,6 @@ const RoomController = {
         if (!room) return res.status(404).send('Sala não encontrada');
         res.render('rooms/form', { room });
       } else {
-        // Criar sala - form vazio
         res.render('rooms/form', { room: null });
       }
     } catch (err) {

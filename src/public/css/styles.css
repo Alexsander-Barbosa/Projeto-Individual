@@ -77,15 +77,14 @@ form input[type="text"],
 form input[type="number"],
 form input[type="datetime-local"],
 form select {
-    width: calc(100% - 22px); /* Ajuste para padding e borda */
+    width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Inclui padding e borda no width */
+    box-sizing: border-box;
 }
 
-/* Estilo para links de ação na tabela */
 td a {
     margin-right: 5px;
 }

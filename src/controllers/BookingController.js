@@ -1,11 +1,8 @@
-// src/controllers/BookingController.js (COMPLETO e CORRIGIDO)
-
 const BookingService = require('../services/BookingService');
 const EmployeeService = require('../services/EmployeeService');
 const RoomService = require('../services/RoomService');
 
 const BookingController = {
-  // === API REST ===
   criar: async (req, res) => {
     console.log('CONTROLLER CRIAR: Requisição POST recebida para bookings!');
     console.log('CONTROLLER CRIAR: Dados recebidos no corpo da requisição:', req.body);
@@ -31,7 +28,7 @@ const BookingController = {
     }
   },
 
-  buscarPorId: async (req, res) => { // <--- ESTE MÉTODO PRECISA ESTAR PRESENTE E SER UMA FUNÇÃO
+  buscarPorId: async (req, res) => {
     try {
       console.log(`CONTROLLER BUSCAR POR ID: Requisição GET recebida para booking ID: ${req.params.id} (API).`);
       const booking = await BookingService.buscarPorId(req.params.id);
@@ -47,7 +44,7 @@ const BookingController = {
     }
   },
 
-  atualizar: async (req, res) => { // <--- ESTE MÉTODO TAMBÉM PRECISA ESTAR PRESENTE
+  atualizar: async (req, res) => {
     console.log(`CONTROLLER ATUALIZAR: Requisição PUT recebida para booking ID: ${req.params.id}.`);
     console.log('CONTROLLER ATUALIZAR: Dados recebidos:', req.body);
     try {
@@ -64,7 +61,7 @@ const BookingController = {
     }
   },
 
-  excluir: async (req, res) => { // <--- E ESTE TAMBÉM
+  excluir: async (req, res) => {
     console.log(`CONTROLLER EXCLUIR: Requisição DELETE recebida para booking ID: ${req.params.id}.`);
     try {
       const booking = await BookingService.excluir(req.params.id);
@@ -79,8 +76,6 @@ const BookingController = {
       res.status(500).json({ error: err.message });
     }
   },
-
-  // === VIEWS (Renderização EJS) ===
 
   listarBookingsView: async (req, res) => {
     try {

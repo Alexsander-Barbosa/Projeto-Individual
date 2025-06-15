@@ -113,7 +113,6 @@ const BookingRepository = {
     }
   },
 
-  // NOVO MÉTODO: Verificar sobreposição de horários
   verificarSobreposicao: async (roomId, inicio, fim, bookingId = null) => {
     try {
       console.log(`REPOSITORY: Verificando sobreposição para Sala ${roomId} de ${inicio} a ${fim}.`);
@@ -126,14 +125,14 @@ const BookingRepository = {
       `;
       const params = [roomId, inicio, fim];
 
-      if (bookingId) { // Se for uma atualização, ignore a própria reserva
+      if (bookingId) {
         query += ` AND id != $4`;
         params.push(bookingId);
       }
 
       const result = await db.query(query, params);
       console.log('REPOSITORY: Verificação de sobreposição executada. Resultados:', result.rows.length);
-      return result.rows.length > 0; // Retorna true se houver sobreposição
+      return result.rows.length > 0;
     } catch (err) {
       console.error('REPOSITORY ERRO: Erro em BookingRepository.verificarSobreposicao:', err.message);
       console.error('Stack Trace do Erro no Repository (verificarSobreposicao):', err.stack);
