@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS employee (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  departamento VARCHAR(100) NOT NULL
+);
