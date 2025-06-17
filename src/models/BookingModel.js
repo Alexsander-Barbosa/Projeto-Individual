@@ -10,10 +10,9 @@ class Booking {
         this.num_pessoas = num_pessoas;
     }
 
-    // Schema de validação para um Booking
     static getValidationSchema(isUpdate = false) {
         const schema = Joi.object({
-            id: Joi.number().integer().min(1).optional(), // ID é opcional para criação, mas pode ser validado se presente
+            id: Joi.number().integer().min(1).optional(),
             employee_id: Joi.number().integer().required().messages({
                 'any.required': 'O ID do funcionário é obrigatório.',
                 'number.base': 'O ID do funcionário deve ser um número inteiro.'
@@ -38,18 +37,12 @@ class Booking {
             })
         });
 
-        // Se for uma atualização, todos os campos devem ser opcionais para permitir atualizações parciais
-        // No seu caso, sua lógica de service exige todos os campos, então manteremos 'required'
-        // Se você quiser permitir atualizações parciais, removeria o .required() e usaria .optional()
-        // ou .default() no schema, e passaria { presence: 'optional' } no .validate()
         return schema;
     }
 
-    // Método para validar uma instância do Booking
     validate(isUpdate = false) {
         const { error } = Booking.getValidationSchema(isUpdate).validate(this, { abortEarly: false, allowUnknown: true });
         if (error) {
-            // Mapeia os detalhes do erro para mensagens mais claras
             const messages = error.details.map(detail => detail.message.replace(/['"]/g, ''));
             throw new Error(`Erro de validação: ${messages.join('; ')}`);
         }

@@ -1,16 +1,14 @@
 const BookingRepository = require('../repositories/BookingRepository');
 const RoomRepository = require('../repositories/RoomRepository');
-const Booking = require('../models/BookingModel'); // Importe o Model
+const Booking = require('../models/BookingModel'); 
 
 const EXACT_DURATION_MS = 2 * 60 * 60 * 1000;
 
 const BookingService = {
     criar: async (data) => {
-        // 1. Validar os dados de entrada usando o Model
         const newBooking = new Booking(data);
-        newBooking.validate(); // Validação básica dos campos
+        newBooking.validate();
 
-        // 2. Lógicas de negócio adicionais (capacidade, sobreposição, duração)
         const { room_id, dia_hora_reserva, dia_hora_fim_reserva, num_pessoas } = data;
 
         const inicio = new Date(dia_hora_reserva);
@@ -34,7 +32,7 @@ const BookingService = {
             throw new Error('A sala já está reservada para o período solicitado neste período.');
         }
 
-        return await BookingRepository.criar(newBooking); // Passe a instância validada
+        return await BookingRepository.criar(newBooking);
     },
 
     listar: async () => {
@@ -46,11 +44,9 @@ const BookingService = {
     },
 
     atualizar: async (id, data) => {
-        // 1. Validar os dados de entrada usando o Model (pode-se passar isUpdate = true)
-        const updatedBooking = new Booking({ id, ...data }); // Crie uma instância com o ID para validação
-        updatedBooking.validate(true); // Validação básica dos campos para atualização
+        const updatedBooking = new Booking({ id, ...data });
+        updatedBooking.validate(true);
 
-        // 2. Lógicas de negócio adicionais
         const { room_id, dia_hora_reserva, dia_hora_fim_reserva, num_pessoas } = data;
 
         const inicio = new Date(dia_hora_reserva);
@@ -74,7 +70,7 @@ const BookingService = {
             throw new Error('A sala já está reservada para o período solicitado neste período.');
         }
 
-        return await BookingRepository.atualizar(id, updatedBooking); // Passe a instância validada
+        return await BookingRepository.atualizar(id, updatedBooking);
     },
 
     excluir: async (id) => {

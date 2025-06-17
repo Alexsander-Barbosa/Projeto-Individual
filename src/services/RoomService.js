@@ -1,11 +1,11 @@
 const RoomRepository = require('../repositories/RoomRepository');
-const Room = require('../models/RoomModel'); // Importe o Model
+const Room = require('../models/RoomModel');
 
 const RoomService = {
     criar: async (dados) => {
         const newRoom = new Room(dados);
-        newRoom.validate(); // Valida os dados de entrada
-        return await RoomRepository.criar(newRoom); // Passa a instância validada
+        newRoom.validate();
+        return await RoomRepository.criar(newRoom);
     },
 
     listar: async () => {
@@ -17,9 +17,9 @@ const RoomService = {
     },
 
     atualizar: async (id, dados) => {
-        const updatedRoom = new Room({ id, ...dados }); // Crie uma instância com o ID
-        updatedRoom.validate(true); // Valida os dados de entrada para atualização
-        return await RoomRepository.atualizar(id, updatedRoom); // Passa a instância validada
+        const updatedRoom = new Room({ id, ...dados });
+        updatedRoom.validate(true);
+        return await RoomRepository.atualizar(id, updatedRoom);
     },
 
     excluir: async (id) => {
